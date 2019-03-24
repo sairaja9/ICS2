@@ -1,7 +1,7 @@
 import pygame
 pygame.init()
 
-win = pygame.display.set_mode((500, 500))
+win = pygame.display.set_mode((500, 480))
 
 pygame.display.set_caption("First Game")
 
@@ -12,7 +12,7 @@ char = pygame.image.load('standing.png')
 
 clock = pygame.time.Clock
 x = 50
-y = 50
+y = 400
 width = 64
 height = 64
 vel = 5
