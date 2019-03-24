@@ -18,7 +18,15 @@ start = True
 
 print("There are seven differnet actions you can complete while on your journey to the prize.  The actions and their corresponding keys are listed below:\n 1. Left - l\n 2. Right - r\n 3. Up - u\n 4. Down - d\n 5. Grab - g\n 6. Fight - f\n 7. Run - run (you can run past regular monsters)\n 8. Help - h\n 9. Start - s (to start the game)")
 print("This game takes place in a three story dungeon.  Each floor has five rooms.  The user has to traverse the levels in search of the prize. Along the way they collect items and fight monsters. On each move the user has nine possible commands: left, right, up, down, grab, fight, run, help, start. If the input is invalid (not one of these commands,) the game will let the user know. Otherwise, the game will execute the user's command. The goal of the game is to collect the prize guarded by the boss monster.")
-print("This is the dungeon blueprint:\n|__|__|__|__|__|\n|__|__|__|__|__|\n|__|__|__|__|__|")
+board3 = [' ', ' ', ' ', ' ', ' ']
+board2 = [' ', ' ', ' ', ' ', ' ']
+board1 = [' ', ' ', ' ', ' ', ' ']
+boards = [board3, board2, board1]
+print("This is the dungeon blueprint:")
+print(board1)
+print(board2)
+print(board3)
+
 while start == True:
   user_input1 = input("Press s to start: ")
   if user_input1 == 's':
@@ -31,6 +39,12 @@ while init == True and lives >= 1:
     current_floor = floors[floor_numbers]
     room_contents = current_floor[user_room]
     print(colored("You are currently in room " + str(user_room) + " on floor " + str(floor_numbers), 'green'))
+    board = boards[floor_numbers]
+    board[user_room] = 'X'
+    board[user_room -1] = ' '
+    print(board1)
+    print(board2)
+    print(board3)
     print(colored("This room has: " + room_contents, 'yellow'))
     print(colored("This is what you have in your pocket " + str(pocket), 'green'))
     user_input = input("What would you like to do? ")
@@ -40,13 +54,14 @@ while init == True and lives >= 1:
       
     elif user_input == 'run':
       if room_contents == 'monster':
-        runList = [True, False]
-        run = random.choice(runList)
-        if run == True:
+        runList = [1,2,3,4,5,6,7,8,9,10]
+        temp = random.choice(runList)
+        if temp <= 4:
           user_room += 1
           print(colored("You successfully ran past the monster", 'red'))
-        elif run == False:
+        else:
           print(colored("The monster caught you while you were running.  You lost a life.", 'red'))
+          board[user_room] = ' '
           floor_numbers = 0
           user_room = 0
           pocket = []
@@ -58,6 +73,7 @@ while init == True and lives >= 1:
         if user_room == 0:
           print(colored("You cannot move left.  This is the leftmost room on this floor.", 'red'))
         else:
+          board[user_room] = ' '
           user_room -= 1
             
     elif user_input == 'f':
@@ -70,6 +86,7 @@ while init == True and lives >= 1:
           win = True
         elif room_contents == 'boss monster' and ("A sword" not in pocket and "Some stones" not in pocket):
           print(colored("Sorry, you died because you didnt have a sword and some stones to fight the boss monster with.  You lost a life.", 'red'))
+          board[user_room] = ' '
           floor_numbers = 0
           user_room = 0
           pocket = []
@@ -82,6 +99,7 @@ while init == True and lives >= 1:
           win = True
         elif room_contents == 'monster' and "A sword" not in pocket:
           print(colored("Sorry, you died because you didnt have a sword to fight with.  You lost a life.", 'red'))
+          board[user_room] = ' '
           floor_numbers = 0
           user_room = 0
           pocket = []
@@ -99,12 +117,14 @@ while init == True and lives >= 1:
         
     elif user_input == 'u':
         if room_contents == 'stairs up':
+            board[user_room] = ' '
             floor_numbers += 1
         else:
             print(colored("You cannot move up in this location.  Search for a room or floor with an up staircase.", 'red'))
         
     elif user_input == 'd':
         if room_contents == 'stairs down':
+            board[user_room] = ' '
             floor_numbers -= 1
         else:
             print(colored("You cannot move down in this location.  Search for a room or floor with a down staircase.", 'red'))
