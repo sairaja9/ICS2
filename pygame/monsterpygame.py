@@ -1,3 +1,4 @@
+#This game was learned from Tech With Tim
 import pygame
 pygame.init()
 
@@ -10,7 +11,7 @@ walkLeft = [pygame.image.load('L1.png'), pygame.image.load('L2.png'), pygame.ima
 bg = pygame.image.load('bg.jpg')
 char = pygame.image.load('standing.png')
 
-clock = pygame.time.Clock
+clock = pygame.time.Clock()
 x = 50
 y = 400
 width = 64
