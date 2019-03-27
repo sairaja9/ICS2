@@ -68,13 +68,6 @@ while init == True and lives >= 1:
         lives -= 1
     else:
       print(colored("You cannot run past this room.", 'red'))
-
-  elif user_input == 'l':
-    if user_room == 0:
-      print(colored("You cannot move left. This is the leftmost room on this floor.", 'red'))
-    else:
-      board[user_room] = ' '
-      user_room -= 1
           
   elif user_input == 'f':
     if room_contents == 'boss monster' and ("A sword" in pocket and "Some stones" in pocket):
@@ -114,6 +107,15 @@ while init == True and lives >= 1:
       print(colored("You cannot pass this room without beating the monster.", 'red'))
     else:
       user_room += 1
+
+  elif user_input == 'l':
+    if user_room == 0:
+      print(colored("You cannot move left. This is the leftmost room on this floor.", 'red'))
+    elif not(win) and (room_contents == 'monster' or room_contents == 'boss monster'):
+      print(colored("You cannot pass this room without beating the monster.", 'red'))
+    else:
+      board[user_room] = ' '
+      user_room -= 1
       
   elif user_input == 'u':
     if room_contents == 'stairs up':
