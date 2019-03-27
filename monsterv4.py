@@ -1,3 +1,4 @@
+# Copyright © Sai K Raja, 2019
 from termcolor import colored
 import random
 
