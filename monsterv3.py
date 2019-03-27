@@ -11,7 +11,6 @@ user_room = 0
 pocket = []
 floor_numbers = 0
 lives = 3
-win = False
 run = False
 init = False
 start = True
@@ -48,6 +47,7 @@ while init == True and lives >= 1:
   print(colored("This room has: " + room_contents, 'yellow'))
   print(colored("This is what you have in your pocket " + str(pocket), 'green'))
   user_input = input("What would you like to do? ")
+  win = False
     
   if user_input not in user_input_list:
     print("You have entered an invalid command. Please enter one of the valid commands or press h to navigate to the help menu.")
@@ -69,7 +69,7 @@ while init == True and lives >= 1:
     else:
       print(colored("You cannot run past this room.", 'red'))
 
-  if user_input == 'l':
+  elif user_input == 'l':
     if user_room == 0:
       print(colored("You cannot move left. This is the leftmost room on this floor.", 'red'))
     else:
@@ -110,7 +110,7 @@ while init == True and lives >= 1:
   elif user_input == 'r':
     if user_room == 4:
       print(colored("You cannot move right. This is the rightmost room on this floor.", 'red'))
-    elif (not(win)) and (room_contents == 'monster' or room_contents == 'boss monster'):
+    elif not(win) and (room_contents == 'monster' or room_contents == 'boss monster'):
       print(colored("You cannot pass this room without beating the monster.", 'red'))
     else:
       user_room += 1
