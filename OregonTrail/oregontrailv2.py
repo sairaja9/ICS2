@@ -82,9 +82,8 @@ def set_sick_days(monthly_sick_days):
     global MONTH_LENGTH
     sick_list = list(range(1, MONTH_LENGTH[month - 1]))
     while monthly_sick_days >= 1:
-        return random.choice(sick_list)
         monthly_sick_days -= 1
-
+        return random.choice(sick_list)
 # Actions to take when a random sickness occurs.
 
 
@@ -95,10 +94,10 @@ def handle_sickness():
 # Name: consume_food()
 # Description: Updates the model to reflect the fact that one day of food was consumed.
 
-
 def consume_food():
-    # TODO(student): write the code for this function.
-    print("consume_food() not yet implemented!")
+    global food_remaining
+    while food_remaining >= 5:
+        food_remaining -= 5
 
 # Name: next_day
 # Description: Moves the clock forward a day
@@ -134,19 +133,19 @@ def handle_travel():
 
 
 def handle_rest(MIN_DAYS_PER_TRAVEL, MAX_DAYS_PER_TRAVEL, MAX_HEALTH):
-        # TODO(student): write code for this function
+    # TODO(student): write code for this function
     global health_level
     rest_days = random.choice(
         list(range(MIN_DAYS_PER_TRAVEL, MAX_DAYS_PER_TRAVEL)))
-    while health_level <= MAX_HEALTH:
+    while health_level < MAX_HEALTH:
         health_level += 1
-    print("You rested for " + str(rest_days))
-    print("Your health is now " + health_level)
+    print("You rested for " + str(rest_days) + " days")
+    print("Your health is now " + str(health_level))
 
 
 # Actions to take when player chooses 'hunt' action
 def handle_hunt():
-        # TODO(student): write code for this function
+    # TODO(student): write code for this function
     print("handle_hunt() not yet implemented!")
 
 
@@ -156,8 +155,7 @@ def handle_status(miles_left, food_remaining, health_level, month, day, sickness
     print("Health: " + str(health_level))
     print("Month: " + str(month))
     print("Day: " + str(day))
-    print("Sicknesses suffered this month: " +
-          str(sickness_suffered_this_month))
+    print("Sicknesses suffered this month: " + str(sickness_suffered_this_month))
 
 # Actions to take when player chooses 'help' action
 
