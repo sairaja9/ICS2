@@ -71,6 +71,7 @@ def handle_travel():
     variables.travel_days = random.choice(list(range(variables.MIN_DAYS_PER_TRAVEL, variables.MAX_DAYS_PER_TRAVEL)))
     variables.travel_distance = random.choice(list(range(variables.MIN_MILES_PER_TRAVEL, variables.MAX_MILES_PER_TRAVEL)))
     print("You moved " + str(variables.travel_distance) + " miles in " + str(variables.travel_days) + " days.")
+    variables.day += variables.travel_days
 
 # Actions to take when player chooses 'rest' action
 
