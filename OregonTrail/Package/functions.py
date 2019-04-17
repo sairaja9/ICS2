@@ -1,4 +1,3 @@
-
 import random
 import variables
 import text
@@ -59,17 +58,18 @@ def next_day():
 
 
 def advance_game_clock(num_days):
-    # TODO(student): write code for this function
-    print("advance_game_clock() not yet implemented!")
+    if is_last_day_of_month():
+        variables.month += 1
+        variables.day = 1
+        variables.day += 1
+    else:
+        variables.day += 1
 
 
 # Actions to take when player chooses 'travel' action
 def handle_travel():
-    # TODO(student): write code for this function
-    variables.travel_days = random.choice(
-        list(range(variables.MIN_DAYS_PER_TRAVEL, variables.MAX_DAYS_PER_TRAVEL)))
-    variables.travel_distance = random.choice(
-        list(range(variables.MIN_MILES_PER_TRAVEL, variables.MAX_MILES_PER_TRAVEL)))
+    variables.travel_days = random.choice(list(range(variables.MIN_DAYS_PER_TRAVEL, variables.MAX_DAYS_PER_TRAVEL)))
+    variables.travel_distance = random.choice(list(range(variables.MIN_MILES_PER_TRAVEL, variables.MAX_MILES_PER_TRAVEL)))
     print("You moved " + str(variables.travel_distance) + " miles in " + str(variables.travel_days) + " days.")
 
 # Actions to take when player chooses 'rest' action
@@ -87,14 +87,15 @@ def handle_rest():
 
 # Actions to take when player chooses 'hunt' action
 def handle_hunt():
-    # TODO(student): write code for this function
-    print("handle_hunt() not yet implemented!")
-
+    variables.food_remaining += 100
+    variables.travel_days = random.choice(list(range(variables.MIN_DAYS_PER_REST, variables.MAX_DAYS_PER_REST)))
+    print("You hunted for " + str(variables.travel_days) + " days and gained 100 pounds of food.")
 
 # Actions to take when player chooses 'status' action
 def handle_status():
     print("Miles left: " + str(variables.miles_left))
     print("Health: " + str(variables.health_level))
+    print("Food remaining: " + str(variables.food_remaining) + " pounds")
     print("Month: " + str(variables.month))
     print("Day: " + str(variables.day))
     print("Sicknesses suffered this month: " + str(variables.sickness_suffered_this_month))
@@ -103,7 +104,6 @@ def handle_status():
 
 
 def handle_help():
-    # TODO(student): write code for this function
     print(text.help_text)
 
 # Actions to take when player chooses 'quit' action
@@ -123,6 +123,7 @@ def handle_invalid_input(response):
 # player is out of food, or has reached Oregon, or is out of time, or too sick)
 #
 # Returns: True if game is over, False otherwise.
+
 def game_is_over():
     # TODO(student): write code for this function
     print("game_is_over() not yet implemented!")

@@ -4,6 +4,7 @@ import functions
 
 # The main program. No need to modify anything below here.
 
+
 print(functions.text.welcome_text + functions.text.help_text + functions.text.good_luck_text)
 player_name = input("\nWhat is your name, player?: ")
 
