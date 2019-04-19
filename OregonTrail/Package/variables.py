@@ -1,5 +1,5 @@
-# Model -- variables that collectivel represent the state of the game
 
+# Model -- variables that collectively represent the state of the game
 miles_left = 2000
 food_remaining = 500
 health_level = 5
