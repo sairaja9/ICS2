@@ -21,11 +21,16 @@ def set_sick_days():
     sick_days = [random.randint(1, variables.MONTH_LENGTH[variables.month - 1]), random.randint(1, variables.MONTH_LENGTH[variables.month - 1])]
     while sick_days[0] == sick_days[1]:
         sick_days[1] = [random.randint(1, variables.MONTH_LENGTH[variables.month - 1])]
-    variables.sickness_suffered_this_month = "days " + str(sick_days[0]) + " and " + str(sick_days[1])
-    return sick_days
+    variables.days_sick = sick_days
 
-def handle_sickness(days_sick):
-    if variables.day in days_sick:
+def month_one():
+    if variables.month == 3:
+        set_sick_days()
+
+month_one()
+
+def handle_sickness():
+    if variables.day in variables.days_sick:
         print("You fell sick!")
         if variables.health_level >= 0:
             variables.health_level -= 1
@@ -49,10 +54,11 @@ def next_day():
         if variables.month > 12:
             variables.month -= 12
             variables.day = 1
+        set_sick_days()
     else:
         variables.day += 1
     consume_food()
-    handle_sickness(set_sick_days())
+    handle_sickness()
 
 # Name: advance_game_clock
 # Description: Causes a certain number of days to elapse. The days pass one at a time, and each
@@ -101,8 +107,7 @@ def handle_status():
     print("Food remaining: " + str(variables.food_remaining) + " pounds")
     print("Month: " + str(variables.month))
     print("Day: " + str(variables.day))
-    print("Sicknesses suffered this month: " +
-          str(variables.sickness_suffered_this_month))
+    print("Sick days this month " + str(variables.days_sick))
 
 def handle_help():
     print(text.help_text)

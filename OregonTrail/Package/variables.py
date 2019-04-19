@@ -6,6 +6,7 @@ month = 3
 day = 1
 sickness_suffered_this_month = 0
 player_name = None
+days_sick = []
 
 # Constants -- parameters that define the rules of the game,
 # but which don't change.

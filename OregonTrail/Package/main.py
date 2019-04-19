@@ -13,11 +13,11 @@ playing = True
 while playing:
     print()
     ########## Normal Game Player ##########
-    #action = input("Choose an action, {0} -->".format(player_name))
+    action = input("Choose an action, {0} -->".format(player_name))
     ##########
 
     ########## Extra Credit/ AI/ Smart Player ##########
-    action = AI.choose_action()
+    #action = AI.choose_action()
     ##########
 
     ########## Extra Credit/ Auto Player ##########
