@@ -24,12 +24,6 @@ def set_sick_days():
     variables.sickness_suffered_this_month = "days " + str(sick_days[0]) + " and " + str(sick_days[1])
     return sick_days
 
-def reset_sick():
-    if variables.new_month:
-        variables.sick = set_sick_days
-    else:
-        variables.sick = set_sick_days()
-
 def handle_sickness(days_sick):
     if variables.day in days_sick:
         print("You fell sick!")
@@ -55,11 +49,10 @@ def next_day():
         if variables.month > 12:
             variables.month -= 12
             variables.day = 1
-        variables.new_month = True
     else:
         variables.day += 1
     consume_food()
-    handle_sickness(variables.sick)
+    handle_sickness(set_sick_days())
 
 # Name: advance_game_clock
 # Description: Causes a certain number of days to elapse. The days pass one at a time, and each
