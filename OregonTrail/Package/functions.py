@@ -6,7 +6,7 @@ import text
 
 # Name: is_last_day_of_month
 # Description: Tells us if this is the last day of the month
-# none
+# Input: none
 # Returns: boolean, whether this day is the last in the month (True or False)
 def is_last_day_of_month():
     if variables.MONTH_LENGTH[variables.month - 1] == variables.day:
@@ -24,12 +24,17 @@ def set_sick_days():
     variables.sickness_suffered_this_month = "days " + str(sick_days[0]) + " and " + str(sick_days[1])
     return sick_days
 
-sick_days_this_month = set_sick_days()
+def reset_sick():
+    if variables.new_month:
+        variables.sick = set_sick_days
+    else:
+        variables.sick = set_sick_days()
 
 def handle_sickness(days_sick):
     if variables.day in days_sick:
         print("You fell sick!")
-        variables.health_level -= 1
+        if variables.health_level >= 0:
+            variables.health_level -= 1
         print("Your new health is " + str(variables.health_level))
 
 # Name: consume_food()
@@ -50,10 +55,11 @@ def next_day():
         if variables.month > 12:
             variables.month -= 12
             variables.day = 1
+        variables.new_month = True
     else:
         variables.day += 1
     consume_food()
-    handle_sickness(sick_days_this_month)
+    handle_sickness(variables.sick)
 
 # Name: advance_game_clock
 # Description: Causes a certain number of days to elapse. The days pass one at a time, and each
@@ -115,32 +121,36 @@ def handle_invalid_input(response):
 ########## Ending Functions ##########
 
 def handle_quit():
-    game_is_over()
-    return True
-
-# Returns: True if game is over, False otherwise.
-def game_is_over():
-    return True
-
-# Inspects the model and determines if the player has won.
-# Returns: none
-def player_wins():
-    if variables.health_level > 0 and variables.food_remaining > 0:
-        if variables.month < 12 and variables.miles_left == 0:
-            print("You won! Congratulations.  You ahve reached Oregon!")
-            game_is_over()
+    playing = False
+    return playing
 
 # Inspects the model and determines if the game has ended for any reason (e.g.
 # player is out of food, or has reached Oregon, or is out of time, or too sick)
+# Returns: True if game is over, False otherwise.
+def game_is_over():
+    if variables.food_remaining <= 0 or variables.month == 1 or variables.health_level <= 0:
+        return True
+    elif (variables.health_level > 0 and variables.food_remaining > 0) and (variables.month <= 12 and variables.miles_left <= 0):
+        return True
+    else:
+        return False
+
+# Inspects the model and determines if the player has won.
+# Returns: True if ganme is over, False otherwise.
+def player_wins():
+    if (variables.health_level > 0 and variables.food_remaining > 0) and (variables.month <= 12 and variables.miles_left <= 0):
+        return True
+    else:
+        return False
+
 # Returns a string with the explanation of why the player has lost.
 # If the player hasn't lost, returns an empty string.
 def loss_report():
-    if handle_quit():
-        print("You lost becasue you quit!")
-    elif variables.health_level <= 0:
+    if variables.health_level <= 0:
         print("You died due to low health.")
     elif variables.food_remaining <= 0:
         print("You died of starvation.")
     elif variables.month == 1:
         print("You lost.  You did not reach Oregon on time.")
-    game_is_over()
+    else:
+        return " "
