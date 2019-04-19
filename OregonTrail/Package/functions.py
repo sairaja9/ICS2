@@ -91,8 +91,7 @@ def handle_help():
     print(text.help_text)
 
 def handle_quit():
-    # TODO(student): write code for this function
-    print("handle_quit() not yet implemented!")
+    return True
 
 def handle_invalid_input(response):
     print(str(response) + "is not a valid input. Please choose another action. To see the list of inputs and actions, please enter the help menu by pressing h or typing help.")
