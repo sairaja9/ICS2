@@ -13,11 +13,11 @@ player_name = input("\nWhat is your name, player?: ")
 while variables.playing:
     print()
     ########## Normal Game Player ##########
-    action = input("Choose an action, {0} -->".format(player_name))
+    #action = input("Choose an action, {0} -->".format(player_name))
     ##########
 
     ########## Extra Credit/ AI/ Smart Player ##########
-    #action = AI.choose_action()
+    action = AI.choose_action()
     ##########
 
     ########## Extra Credit/ Auto Player ##########
@@ -39,7 +39,7 @@ while variables.playing:
         functions.handle_invalid_input(action)
 
     if functions.game_is_over():
-        playing = False
+        variables.playing = False
 
 if functions.player_wins():
     print("\n\nCongratulations you made it to Oregon alive!")
