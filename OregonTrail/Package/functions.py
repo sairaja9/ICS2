@@ -119,8 +119,8 @@ def handle_invalid_input(response):
 ########## Ending Functions ##########
 
 def handle_quit():
-    playing = False
-    return playing
+    variables.playing = False
+    return variables.playing
 
 # Inspects the model and determines if the game has ended for any reason (e.g.
 # player is out of food, or has reached Oregon, or is out of time, or too sick)
@@ -151,4 +151,5 @@ def loss_report():
     elif variables.month == 1:
         print("You lost.  You did not reach Oregon on time.")
     else:
+        print("You quit!")
         return " "

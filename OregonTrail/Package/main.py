@@ -1,6 +1,7 @@
 import functions
 import auto
 import AI
+import variables
 
 # Simulation game of traveling out west in 1800's
 
@@ -9,8 +10,7 @@ import AI
 print(functions.text.welcome_text + functions.text.help_text + functions.text.good_luck_text)
 player_name = input("\nWhat is your name, player?: ")
 
-playing = True
-while playing:
+while variables.playing:
     print()
     ########## Normal Game Player ##########
     action = input("Choose an action, {0} -->".format(player_name))
