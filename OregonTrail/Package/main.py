@@ -1,4 +1,5 @@
 import functions
+import auto
 
 # Simulation game of traveling out west in 1800's
 
@@ -10,7 +11,12 @@ player_name = input("\nWhat is your name, player?: ")
 playing = True
 while playing:
     print()
-    action = input("Choose an action, {0} -->".format(player_name))
+    ########## Normal Game Player ##########
+    #action = input("Choose an action, {0} -->".format(player_name))
+    ##########
+    ########## "AI Extra Credit/ Auto Player" ##########
+    action = auto.auto_action
+    ##########
     if action == "travel" or action == "t":
         functions.handle_travel()
     elif action == "rest" or action == "r":
