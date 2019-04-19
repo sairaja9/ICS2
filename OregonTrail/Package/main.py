@@ -18,8 +18,7 @@ while playing:
     elif action == "hunt" or action == "h":
         functions.handle_hunt()
     elif action == "quit" or action == "q":
-        if functions.handle_quit():
-            playing = False
+        functions.handle_quit()
     elif action == "help" or action == "?":
         functions.handle_help()
     elif action == "status" or action == "s":
