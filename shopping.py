@@ -31,8 +31,6 @@ def handle_quit():
 
 # Prompts the user for the location of the item to view,
 # then prints it.
-#
-# TODO: Student must implement this.
 def handle_view_item():
     global shopping_cart
     list_number = int(input("Which list (number) is your item in?: "))
@@ -64,6 +62,14 @@ def handle_invalid_input(value):
 def handle_help():
     print(help_text)
 
+def all_in_one():
+    global shopping_cart
+    newList = []
+    for lists in shopping_cart:
+        for item in lists:
+            newList.append(item)
+    return newList
+
 # Main loop
 print(welcome_text)
 print(help_text)
@@ -81,5 +87,7 @@ while running:
         handle_help()
     elif action == 'quit' or action == 'q':
         handle_quit()
+    elif action == 'all in one' or action == 'aio':
+        all_in_one()
     else:
         handle_invalid_input(action)
