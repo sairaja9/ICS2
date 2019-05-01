@@ -70,6 +70,21 @@ def all_in_one():
             newList.append(item)
     return newList
 
+def count_q_tips():
+    word = 'q-tips'
+    tip_count = 0
+    for word in all_in_one():
+        tip_count += 1
+    print("There were",tip_count,"q-tips in the list")
+    print(all_in_one())
+
+'''
+def drink_more_milk():
+    word = 'milk'
+    if milk not in shopping_cart[]:
+        shopping_cart[].append('milk')
+'''
+
 # Main loop
 print(welcome_text)
 print(help_text)
@@ -89,5 +104,7 @@ while running:
         handle_quit()
     elif action == 'all in one' or action == 'aio':
         all_in_one()
+    elif action == 'count q tips' or action == 'cqt':
+        count_q_tips()
     else:
         handle_invalid_input(action)
