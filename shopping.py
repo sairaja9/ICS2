@@ -70,20 +70,37 @@ def all_in_one():
             newList.append(item)
     return newList
 
-def count_q_tips():
+def count_q_tips(target):
     word = 'q-tips'
     tip_count = 0
     for word in all_in_one():
-        tip_count += 1
+        if word == target:
+            tip_count += 1
     print("There were",tip_count,"q-tips in the list")
     print(all_in_one())
 
-'''
 def drink_more_milk():
-    word = 'milk'
-    if milk not in shopping_cart[]:
-        shopping_cart[].append('milk')
-'''
+    for list_index in range (0, len(shopping_cart)):
+        if 'milk' not in shopping_cart[list_index]:
+            print('Adding "milk" to the list', str(list_index))
+            shopping_cart[list_index].append('milk')
+
+def if_you_give_a_mouse_a_cookie():
+    for list_index in range (0, len(shopping_cart)):
+        if 'milk' in shopping_cart[list_index]:
+            print('changing "milk" to milk and cookies in list', str(list_index))
+            shopping_cart[list_index].remove('milk')
+            shopping_cart[list_index].append('milk and cookies')
+
+def reverse():
+    global shopping_cart
+    newCart = []
+    for lists in shopping_cart:
+        reverseCart = []
+        newCart.insert(0, reverseCart)
+        for item in lists:
+            reverseCart.insert(0, item)
+    print(newCart)
 
 # Main loop
 print(welcome_text)
@@ -105,6 +122,12 @@ while running:
     elif action == 'all in one' or action == 'aio':
         all_in_one()
     elif action == 'count q tips' or action == 'cqt':
-        count_q_tips()
+        count_q_tips('q-tips')
+    elif action == 'drink more milk' or action == 'dmm':
+        drink_more_milk()
+    elif action == 'add cookies' or action == 'ac':
+        if_you_give_a_mouse_a_cookie()
+    elif action == 'reverse' or action == 'r':
+        reverse()
     else:
         handle_invalid_input(action)
