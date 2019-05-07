@@ -41,21 +41,42 @@ def is_valid_move(board, location):
 # P - Checks if the previous move resulted in the user winning the game
 # I - board: a 3x3 representation of the board as a nested list
 # R - True if the user now has 3 marks in a row, False if the user does not
-def winning_move(board):
-  count = 0
-  for lists in board:
-    for i in lists:
-      count += 1
-  
-  for i in range (0,2):
-    if board[i] == board[i + 1]:
+
+#Old code
+  '''
+  for i in range (0,3):
+    if board[i][i + 1] == "X" or  board[i][i + 1] == "O":
       return True
-    elif count >= 3:
+    elif board[i + 1][i] == "X" or board[i + 1][i] == "O":
       return True
-    elif board[i] == board[i + 1][i - 1]:
+    elif board[i + 1][i - 1] == "X" or board[i + 1][i - 1] == "O":
+      return True
+    elif board[i + 1][i + 1] == "X" or board[i + 1][i + 1] == "O":
       return True
   return False
+  '''
   
+def winning_move(board):
+	# Check for horizontals
+	for row in range(0,3):
+		if board[row][0] == board[row][1] and board[row][1] == board[row][2] and board[row][0] != " ":
+			return True
+			
+	# Check for verticals
+	for col in range(0,3):
+		if board[0][col] == board[1][col] and board[1][col] == board[2][col] and board[2][col] != " ":
+			return True
+			
+	# Check for diagonals
+	#Diagonal top left to bottom right
+	if board[0][0] == board[1][1] and board[1][1] == board[2][2] and board[2][2] != " ":
+			return True
+	
+	#Diagonal top right to bottom left
+	if board[0][2] == board[1][1] and board[1][1] == board[2][0] and board[2][0] != " ":
+			return True
+		
+	return False
     
 # Extra Credit: uncomment the following line and implement the function
 # N - winning_move_possible
@@ -67,3 +88,7 @@ def winning_move(board):
 
 
 # Write your test code here:
+'''
+def winning_move_possible():
+  #still working on it (temporarily moved on to part B)
+'''
