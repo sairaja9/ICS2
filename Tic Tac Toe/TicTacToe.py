@@ -12,7 +12,6 @@
 # I - board: a 3x3 representation of the board as a nested list
 # R - True if the board is full, False if there is at least one open space
 def is_board_full(board):
-  count = 0
   for lists in board:
     for item in lists:
       if item == " ":
