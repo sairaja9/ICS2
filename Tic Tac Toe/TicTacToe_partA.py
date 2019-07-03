@@ -1,3 +1,4 @@
+board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 # Copy your logic functions from part A below:
 # This file contains the core functions needed to validate moves in the Tic Tac Toe game
 # Implement each function and choose "Run Tests" from the drop down menu to see how you did.
